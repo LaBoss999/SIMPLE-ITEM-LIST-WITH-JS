@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONTERO-DESIGNS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ffeb3b;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ffeb3b;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            animation: fadeIn 1.4s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ffd600;
+        }
+
+        .item-list {
+            margin-top: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.5s ease-in-out;
+            word-wrap: break-word;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item span {
+            flex: 1;
+            margin-right: 10px;
+            word-wrap: break-word;
+        }
+
+        .item button {
+            margin-left: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .edit-btn {
+            background-color: #ffeb3b;
+            color: black;
+        }
+
+        .delete-btn {
+            background-color: #000;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #ffd600;
+        }
+
+        .delete-btn:hover {
+            background-color: #333;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+            animation: fadeIn 1.6s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>MONTERO-DESIGNS</h1>
+        <input type="text" id="itemInput" placeholder="Enter item here...">
+        <button onclick="addItem()">Add</button>
+        <div class="item-list" id="itemList">
+            <div class="item">
+                <span>Shoes</span>
+                <div>
+                    <button class="edit-btn" onclick="editItem(this)">Edit</button>
+                    <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+                </div>
+            </div>
+            <div class="item">
+                <span>Watches</span>
+                <div>
+                    <button class="edit-btn" onclick="editItem(this)">Edit</button>
+                    <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">© 2024 Simple EBENEZER App</div>
+    <script>
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const itemList = document.getElementById('itemList');
+            if (itemInput.value.trim() !== '') {
+                const newItem = document.createElement('div');
+                newItem.className = 'item';
+                newItem.innerHTML = `
+                    <span>${itemInput.value}</span>
+                    <div>
+                        <button class="edit-btn" onclick="editItem(this)">Edit</button>
+                        <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                `;
+                newItem.style.animation = 'fadeInUp 0.5s ease-in-out';
+                itemList.appendChild(newItem);
+                itemInput.value = '';
+            }
+        }
+
+        function editItem(button) {
+            const item = button.closest('.item');
+            const itemName = item.querySelector('span').innerText;
+            const newItemName = prompt('Edit item name:', itemName);
+            if (newItemName !== null && newItemName.trim() !== '') {
+                item.querySelector('span').innerText = newItemName;
+            }
+        }
+
+        function deleteItem(button) {
+            const item = button.closest('.item');
+            item.style.animation = 'fadeOut 0.5s ease-in-out';
+            setTimeout(() => {
+                item.remove();
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>
+``
